@@ -11,25 +11,22 @@ function ProductList() {
   const [currentPage, setCurrentPage] = useState(1);
   const [productList, setProductList] = useState([]);
 
-  // 더보기 페이지네이션 기능
-  const calcPagination = _list => {
-    let accList = _list;
-    const targetIndex =
-      pageSize * currentPage < productData.total
-        ? pageSize * currentPage
-        : productData.total;
+  const getProductList = page => {
+    const accList = [];
+    const endIndex = pageSize * page;
+    const totalCount = productData.total;
+    const targetIndex = endIndex < totalCount ? endIndex : totalCount;
 
-    for (let i = pageSize * (currentPage - 1); i < targetIndex; i++) {
-      accList = accList.concat(productData.list[i]);
+    for (let i = 0; i < targetIndex; i++) {
+      accList.push(productData.list[i]);
     }
 
-    return accList;
+    setProductList(accList);
   };
 
+  // currentPage 가 바뀔때마다 실행
   useEffect(() => {
-    // currentPage 가 바뀔때마다 실행
-    const calcList = calcPagination(productList);
-    setProductList(calcList);
+    getProductList(currentPage);
   }, [currentPage]);
 
   const viewMore = page => {
