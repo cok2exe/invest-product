@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import productData from "../../productList.json";
+
 import ProductCard from "../../components/ProductCard";
 
 import "./index.scss";
@@ -21,17 +22,18 @@ function ProductList() {
       accList.push(productData.list[i]);
     }
 
+    setCurrentPage(page);
     setProductList(accList);
   };
 
   // currentPage 가 바뀔때마다 실행
   useEffect(() => {
-    getProductList(currentPage);
-  }, [currentPage]);
+    getProductList(1);
+  }, []);
 
-  const viewMore = page => {
-    setCurrentPage(page);
-  };
+  // const viewMore = page => {
+  //   getProductList(page);
+  // };
 
   return (
     <div className="ProductList">
@@ -65,7 +67,7 @@ function ProductList() {
         {currentPage < numberOfPages && (
           <button
             className="btn btn-more"
-            onClick={() => viewMore(currentPage + 1)}
+            onClick={() => getProductList(currentPage + 1)}
           >
             더보기 ({currentPage}/{numberOfPages})
           </button>
