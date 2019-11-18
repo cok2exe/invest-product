@@ -21,3 +21,7 @@ $ yarn prod
 $ npm run build
 $ npm run prod
 ```
+
+```
+http://localhost:8080/ 접속
+```
