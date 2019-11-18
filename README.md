@@ -11,11 +11,13 @@ UI를 모듈화하여 적용.
 ### IE에서 확인 시,
 
 ```
+$ yarn build
 $ yarn prod
 ```
 
 또는
 
 ```
+$ npm run build
 $ npm run prod
 ```
